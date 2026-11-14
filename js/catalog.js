@@ -2,6 +2,8 @@
 import { norm, tokens, tokenScore, stripSize } from './hebrew.js';
 import { dept } from './categories.js';
 
+export const rlImageUrl = (bc) => `https://img.rami-levy.co.il/product/${bc}/small.jpg`;
+
 const state = {
   manifest: null,
   products: [],          // מוצרי הקטלוג
@@ -56,6 +58,9 @@ function rebuild() {
   const all = [...state.custom, ...state.products];
   state.index = all.map((p) => {
     if (!p.key) p.key = p.id;
+    // תמונה לפי ברקוד משרת התמונות של רמי לוי (נטענת ישירות מהאייפון).
+    // אם אין שם תמונה למוצר — הטעינה נכשלת ומוצג אייקון המחלקה.
+    if (!p.img && p.barcode && !p.custom && /^\d{8,14}$/.test(p.barcode)) { p.img = rlImageUrl(p.barcode); p.imgCredit ||= 'רמי לוי'; }
     state.byKey.set(p.key, p);
     const d = dept(p.cat);
     const g = groupKeyOf(p);
