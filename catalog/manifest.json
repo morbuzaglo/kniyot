@@ -1,43 +1,65 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-14T19:29:52.480Z",
-  "isSample": true,
-  "total": 127,
-  "withBarcode": 0,
-  "withImages": 0,
+  "generatedAt": "2026-11-14T19:49:23.697Z",
+  "isSample": false,
+  "total": 13988,
+  "withBarcode": 13498,
+  "withImages": 12,
   "byCategory": {
-    "baby": 3,
-    "bakery": 7,
-    "baking": 10,
-    "breakfast": 8,
-    "canned": 9,
-    "cleaning": 7,
-    "dairy": 23,
-    "deli": 2,
-    "drinks": 8,
-    "dry": 11,
-    "fish": 1,
-    "frozen": 5,
-    "hygiene": 4,
-    "meat": 3,
-    "paper": 6,
-    "pets": 2,
-    "produce": 11,
-    "snacks": 7
+    "baby": 89,
+    "bakery": 291,
+    "baking": 987,
+    "breakfast": 579,
+    "canned": 829,
+    "cleaning": 397,
+    "dairy": 802,
+    "deli": 232,
+    "drinks": 927,
+    "dry": 477,
+    "fish": 103,
+    "frozen": 408,
+    "hygiene": 403,
+    "meat": 498,
+    "other": 4259,
+    "paper": 257,
+    "pets": 7,
+    "produce": 1189,
+    "snacks": 1254
   },
   "sources": [
     {
-      "id": "sample",
-      "status": "sample",
-      "error": "נתוני דוגמה לפיתוח — לא יובאו מרשת",
-      "count": 127
+      "id": "shufersal",
+      "status": "ok",
+      "error": null,
+      "count": 13988,
+      "fetchedAt": "2026-11-14T19:48:37.021Z",
+      "lastSuccess": "2026-11-14T19:48:37.021Z"
+    },
+    {
+      "id": "ramilevy",
+      "status": "error",
+      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
+      "count": 0,
+      "fetchedAt": "2026-11-14T19:48:41.703Z",
+      "lastSuccess": null
+    },
+    {
+      "id": "osherad",
+      "status": "error",
+      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
+      "count": 0,
+      "fetchedAt": "2026-11-14T19:48:44.148Z",
+      "lastSuccess": null
     }
   ],
   "shards": [
-    "products-0-4b5fa8e81f.json"
+    "products-0-b94bc9935f.json",
+    "products-1-d8eebf0b15.json",
+    "products-2-2c20b2d68b.json",
+    "products-3-6d286e6299.json"
   ],
-  "attribution": null,
+  "attribution": "חלק מהתמונות מ-Open Food Facts (CC BY-SA 3.0)",
   "notes": [
-    "קטלוג דוגמה. כל המוצרים מסומנים sample. אין ברקודים ואין תמונות."
+    "מוצרים שלא נראו 120 יום הוסרו מהתצוגה: 0"
   ]
 }
