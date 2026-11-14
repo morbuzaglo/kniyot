@@ -136,7 +136,7 @@ test('מקור מרוחק שנכשל מדווח והאחרים ממשיכים', 
       throw new Error('ECONNREFUSED');
     },
   };
-  const { report, ok } = await runImport({ ...parseArgs([]), out, data, quiet: true }, { fetchImpl });
+  const { report, ok } = await runImport({ ...parseArgs([]), out, data, quiet: true, rlImages: false }, { fetchImpl });
   assert.ok(ok);
   assert.equal(report.sources.find((s) => s.id === 'shufersal').status, 'error');
   assert.equal(report.sources.find((s) => s.id === 'ramilevy').status, 'ok');

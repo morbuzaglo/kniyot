@@ -359,6 +359,7 @@ async function productSheet(p, { item = null } = {}) {
       p.chains?.length ? [h('dt', {}, 'נמצא ב'), h('dd', {}, p.chains.map(chainName).join(', '))] : null,
       src ? [h('dt', {}, 'מקור'), h('dd', {}, src.url ? h('a', { href: src.url, target: '_blank', rel: 'noopener' }, chainName(src.chain)) : chainName(src.chain), src.updated ? ' · עודכן ' + new Date(src.updated).toLocaleDateString('he-IL') : '')] : null,
       p.sample ? [h('dt', {}, 'הערה'), h('dd', {}, 'מוצר דוגמה — לא מיובא מרשת')] : null,
+      p.img && p.imgCredit ? [h('dt', {}, 'תמונה'), h('dd', {}, p.imgCredit)] : null,
     ),
     variants.length ? h('div', { class: 'variants' },
       h('div', { class: 'variants-title' }, '⚠ שימו לב: יש גם גדלים או סוגים אחרים'),

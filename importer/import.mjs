@@ -14,12 +14,13 @@ import { bufferToText, parsePriceXml } from './lib/xml.mjs';
 import { normalizeItem } from './lib/normalize.mjs';
 import { emptyDB, mergeProducts, applyOverrides } from './lib/merge.mjs';
 import { enrichFromOFF } from './lib/off.mjs';
+import { attachRamiLevyImages } from './lib/rlimages.mjs';
 import { writeCatalog } from './lib/output.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 export function parseArgs(argv) {
-  const a = { sources: Object.keys(SOURCES), maxStores: 3, out: path.join(HERE, '../app/catalog'), data: path.join(HERE, 'data'), fromDir: null, enrichOff: false, offLimit: 500, downloadImages: true, staleDays: 120, quiet: false };
+  const a = { sources: Object.keys(SOURCES), maxStores: 3, out: path.join(HERE, '../app/catalog'), data: path.join(HERE, 'data'), fromDir: null, enrichOff: false, offLimit: 500, rlImages: true, rlLimit: 30000, downloadImages: true, staleDays: 120, quiet: false };
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i], v = () => argv[++i];
     if (k === '--sources') a.sources = v().split(',').map((s) => s.trim()).filter(Boolean);
@@ -30,6 +31,8 @@ export function parseArgs(argv) {
     else if (k === '--enrich-off') a.enrichOff = true;
     else if (k === '--off-limit') a.offLimit = Number(v());
     else if (k === '--no-download-images') a.downloadImages = false;
+    else if (k === '--no-rl-images') a.rlImages = false;
+    else if (k === '--rl-limit') a.rlLimit = Number(v());
     else if (k === '--stale-days') a.staleDays = Number(v());
     else if (k === '--quiet') a.quiet = true;
     else if (k === '-h' || k === '--help') { console.log('ראו README.md, סעיף "ייבוא הקטלוג"'); process.exit(0); }
@@ -38,6 +41,8 @@ export function parseArgs(argv) {
   for (const s of a.sources) if (!SOURCES[s]) throw new Error(`מקור לא מוכר "${s}". אפשריים: ${Object.keys(SOURCES).join(', ')}`);
   return a;
 }
+
+const ok0 = (reps) => reps.some((r) => r.status === 'ok');
 
 async function readJSON(file, dflt) {
   try { return JSON.parse(await fs.readFile(file, 'utf8')); } catch { return dflt; }
@@ -104,6 +109,11 @@ export async function runImport(opts, { fetchImpl } = {}) {
   const overrides = await readJSON(path.join(opts.data, 'overrides.json'), {});
   const nOver = applyOverrides(db, overrides);
 
+  let rlImages = null;
+  if (opts.rlImages && !opts.fromDir && ok0(sourceReports)) {
+    rlImages = await attachRamiLevyImages(db, { cacheFile: path.join(opts.data, 'rl-images.json'), limit: opts.rlLimit, log, errors });
+  }
+
   let enrich = null;
   if (opts.enrichOff) {
     enrich = await enrichFromOFF(db, { cacheDir: path.join(opts.data, 'off-cache'), imgDir: path.join(opts.out, 'img'), limit: opts.offLimit, downloadImages: opts.downloadImages, log, errors });
@@ -133,7 +143,7 @@ export async function runImport(opts, { fetchImpl } = {}) {
     options: { ...opts, out: path.relative(process.cwd(), opts.out) || '.', data: path.relative(process.cwd(), opts.data) || '.' },
     sources: sourceReports,
     totals: { inDB: all.length, inCatalog: live.length, withBarcode: manifest?.withBarcode ?? 0, withImages: manifest?.withImages ?? 0, overridesApplied: nOver },
-    enrich, errors,
+    rlImages, enrich, errors,
   };
   await fs.writeFile(path.join(opts.data, 'import-report.json'), JSON.stringify(report, null, 2));
   log(`\nסיכום: ${live.length} מוצרים בקטלוג (${manifest?.withBarcode ?? 0} עם ברקוד, ${manifest?.withImages ?? 0} עם תמונה). שגיאות: ${errors.length}. דוח: ${path.join(opts.data, 'import-report.json')}`);

@@ -19,7 +19,7 @@ jobs:
       - run: npm install --no-audit --no-fund || true
       - run: npm test
       - name: Import catalog
-        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 1000 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
+        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 600 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
       - name: Show report
         run: cat importer/data/import-report.json | head -80 || true
       - name: Commit and publish
@@ -28,6 +28,7 @@ jobs:
           git config user.email "catalog-bot@users.noreply.github.com"
           git add app/catalog importer/data
           git commit -m "catalog: עדכון אוטומטי" || echo "אין שינויים"
+          git pull --rebase -X theirs origin main
           git push origin HEAD:main
           git subtree split --prefix app -b pages-tmp
           git push -f origin pages-tmp:gh-pages
