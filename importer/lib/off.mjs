@@ -31,6 +31,13 @@ export async function enrichFromOFF(db, { cacheDir, imgDir, limit = 500, downloa
         await fs.writeFile(cf, JSON.stringify(data));
         consecutiveFail = 0;
       } catch (e) {
+        if (/HTTP 404/.test(e.message)) {         // מוצר שלא קיים ב-OFF — תשובה תקינה, לא כשל
+          data = { status: 0, cachedAt: Date.now() };
+          await fs.writeFile(cf, JSON.stringify(data));
+          consecutiveFail = 0;
+          st.checked++; st.notFound++;
+          continue;
+        }
         st.failed++;
         consecutiveFail++;
         if (consecutiveFail >= 5) { errors.push({ source: 'openfoodfacts', error: 'הופסק אחרי 5 כשלונות רצופים: ' + e.message }); break; }

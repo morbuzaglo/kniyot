@@ -23,8 +23,16 @@ export async function http(url, { method = 'GET', headers = {}, body, jar, timeo
     try {
       const h = { 'user-agent': UA, ...headers };
       if (jar && jar.c.size) h.cookie = jar.header();
-      const res = await fetch(url, { method, headers: h, body, signal: ctl.signal, redirect: 'follow' });
+      // הפניות מטופלות ידנית כדי לשמור קוקיז שנקבעים בתשובת ההפניה (למשל אחרי כניסה)
+      let res = await fetch(url, { method, headers: h, body, signal: ctl.signal, redirect: 'manual' });
       jar?.take(res);
+      for (let hop = 0; hop < 6 && res.status >= 300 && res.status < 400 && res.headers.get('location'); hop++) {
+        const next = new URL(res.headers.get('location'), url).href;
+        const h2 = { 'user-agent': UA };
+        if (jar && jar.c.size) h2.cookie = jar.header();
+        res = await fetch(next, { headers: h2, signal: ctl.signal, redirect: 'manual' });
+        jar?.take(res);
+      }
       if ([401, 403, 429].includes(res.status)) {
         const e = new Error(`HTTP ${res.status} — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף`);
         e.fatal = true;
