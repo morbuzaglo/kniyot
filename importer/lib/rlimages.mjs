@@ -8,7 +8,7 @@ import { UA, sleep } from './http.mjs';
 
 export const rlImageUrl = (barcode) => `https://img.rami-levy.co.il/product/${barcode}/small.jpg`;
 
-export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concurrency = 4, recheckDays = 30, log = console.log, errors = [] }) {
+export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concurrency = 12, recheckDays = 30, log = console.log, errors = [] }) {
   let cache = {};
   try { cache = JSON.parse(await fs.readFile(cacheFile, 'utf8')); } catch {}
   const now = Date.now();
@@ -30,7 +30,7 @@ export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concu
     while (queue.length && !stop) {
       const p = queue.shift();
       try {
-        const r = await fetch(rlImageUrl(p.barcode), { method: 'HEAD', headers: { 'user-agent': UA } });
+        const r = await fetch(rlImageUrl(p.barcode), { method: 'HEAD', headers: { 'user-agent': UA }, signal: AbortSignal.timeout(15000) });
         if (r.status === 200 && (r.headers.get('content-type') || '').startsWith('image/')) {
           cache[p.barcode] = { ok: 1, at: now };
           setImg(p);
@@ -48,12 +48,13 @@ export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concu
         if (++consecutiveFail >= 10) { stop = true; errors.push({ source: 'rami-levy-images', error: 'הופסק אחרי כשלונות רצופים: ' + e.message }); }
         await sleep(3000);
       }
-      await sleep(120);
+      await sleep(50);
+      if (st.checked && st.checked % 2000 === 0) { log(`  תמונות רמי לוי: ${st.checked} נבדקו…`); await save(); }
     }
   }
+  async function save() { await fs.mkdir(path.dirname(cacheFile), { recursive: true }); await fs.writeFile(cacheFile, JSON.stringify(cache)); }
   await Promise.all(Array.from({ length: concurrency }, worker));
-  await fs.mkdir(path.dirname(cacheFile), { recursive: true });
-  await fs.writeFile(cacheFile, JSON.stringify(cache));
+  await save();
   log(`תמונות רמי לוי: נבדקו ${st.checked}, מהמטמון ${st.fromCache}, נמצאו ${st.found}, אין ${st.missing}, כשלונות ${st.failed}${todo.length > limit ? `, נדחו ${todo.length - limit}` : ''}`);
   return st;
 }

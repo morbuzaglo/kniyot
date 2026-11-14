@@ -11,6 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -19,7 +20,7 @@ jobs:
       - run: npm install --no-audit --no-fund || true
       - run: npm test
       - name: Import catalog
-        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 600 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
+        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 300 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
       - name: Show report
         run: cat importer/data/import-report.json | head -80 || true
       - name: Commit and publish
