@@ -150,3 +150,16 @@ test('normalizeItem: מוצר שקיל לא מקבל גודל שגוי', () => {
   assert.equal(p.barcode, null);
   assert.equal(p.cat, 'produce');
 });
+
+test('ZIP עם סיומת gz נפתח', async () => {
+  const { deflateRawSync } = await import('node:zlib');
+  const xml = Buffer.from('<Root><Items><Item><ItemCode>1</ItemCode><ItemName>זיפ</ItemName></Item></Items></Root>');
+  const comp = deflateRawSync(xml);
+  const name = Buffer.from('a.xml');
+  const lh = Buffer.alloc(30); lh.writeUInt32LE(0x04034b50, 0); lh.writeUInt16LE(8, 8); lh.writeUInt32LE(comp.length, 18); lh.writeUInt32LE(xml.length, 22); lh.writeUInt16LE(name.length, 26);
+  const cd = Buffer.alloc(46); cd.writeUInt32LE(0x02014b50, 0); cd.writeUInt16LE(8, 10); cd.writeUInt32LE(comp.length, 20); cd.writeUInt32LE(xml.length, 24); cd.writeUInt16LE(name.length, 28); cd.writeUInt32LE(0, 42);
+  const cdOff = 30 + name.length + comp.length;
+  const end = Buffer.alloc(22); end.writeUInt32LE(0x06054b50, 0); end.writeUInt16LE(1, 8); end.writeUInt16LE(1, 10); end.writeUInt32LE(46 + name.length, 12); end.writeUInt32LE(cdOff, 16);
+  const zip = Buffer.concat([lh, name, comp, cd, name, end]);
+  assert.equal(parsePriceXml(bufferToText(zip)).items[0].itemname, 'זיפ');
+});

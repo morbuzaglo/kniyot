@@ -40,10 +40,11 @@ export async function enrichFromOFF(db, { cacheDir, imgDir, limit = 500, downloa
         }
         st.failed++;
         consecutiveFail++;
-        if (consecutiveFail >= 5) { errors.push({ source: 'openfoodfacts', error: 'הופסק אחרי 5 כשלונות רצופים: ' + e.message }); break; }
+        if (/HTTP 429/.test(e.message) && consecutiveFail < 3) { log('Open Food Facts: הגבלת קצב (429) — ממתינים דקה'); await sleep(60000); continue; }
+        if (consecutiveFail >= 3) { errors.push({ source: 'openfoodfacts', error: 'הופסק אחרי 3 כשלונות רצופים (ימשיך בהרצה הבאה): ' + e.message }); break; }
         continue;
       } finally {
-        await sleep(700);
+        await sleep(1500); // ~40 בקשות לדקה — מתחת למגבלה, גם כששרתי GitHub משותפים
       }
     }
     st.checked++;
@@ -63,9 +64,9 @@ export async function enrichFromOFF(db, { cacheDir, imgDir, limit = 500, downloa
       p.img = 'catalog/img/' + p.barcode + '.jpg';
       st.images++;
     } catch (e) {
-      st.failed++;
+      st.imageFailed = (st.imageFailed || 0) + 1;
     }
-    await sleep(300);
+    await sleep(500);
   }
   log(`Open Food Facts: נבדקו ${st.checked}, נמצאו ${st.found}, תמונות ${st.images}, לא נמצאו ${st.notFound}, כשלונות ${st.failed}${st.skippedByLimit ? `, נדחו להרצה הבאה ${st.skippedByLimit}` : ''}`);
   return st;

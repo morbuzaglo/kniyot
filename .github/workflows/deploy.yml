@@ -19,7 +19,7 @@ jobs:
       - run: npm install --no-audit --no-fund || true
       - run: npm test
       - name: Import catalog
-        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 1500 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
+        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 1000 || echo "::warning::הייבוא הסתיים עם שגיאות — ראו importer/data/import-report.json"
       - name: Show report
         run: cat importer/data/import-report.json | head -80 || true
       - name: Commit and publish
