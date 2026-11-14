@@ -9,10 +9,14 @@
     "import:images": "node importer/import.mjs --enrich-off --off-limit 2000",
     "sample": "node importer/sample-catalog.mjs",
     "test": "node --test importer/test/*.test.mjs",
-    "serve": "python3 -m http.server 8080 --directory app"
+    "serve": "python3 -m http.server 8080 --directory app",
+    "update": "node importer/import.mjs --enrich-off --off-limit 1500 && npm run publish",
+    "publish": "git add app/catalog importer/data && (git commit -m \"catalog: עדכון\" || echo nothing) && git push origin main && git subtree split --prefix app -b pages-tmp && git push -f origin pages-tmp:gh-pages && git branch -D pages-tmp"
   },
   "optionalDependencies": {
     "sharp": "^0.33.0"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

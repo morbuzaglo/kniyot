@@ -57,6 +57,10 @@ python3 -m http.server 8080 --directory app      # או: npx serve app
 
 ## 3. ייבוא הקטלוג
 
+**עדכון מהיר:**
+- **מהטלפון/דפדפן:** GitHub ← המאגר ← **Actions** ← `update-catalog` ← **Run workflow**. רץ גם אוטומטית כל יום ראשון.
+- **מהמחשב (אם השרתים של GitHub נחסמים ע״י הרשתות):** `git clone https://github.com/morbuzaglo/kniyot && cd kniyot && npm install && npm run update` — מייבא, שומר ומפרסם לאתר.
+
 **מקורות:** קובצי המחירים שהרשתות מחויבות לפרסם לפי חוק המזון (שקיפות מחירים). מהקבצים לוקחים רק ברקוד, שם, יצרן וגודל. מחירים לא נשמרים.
 
 | רשת | מקור | הערות |
