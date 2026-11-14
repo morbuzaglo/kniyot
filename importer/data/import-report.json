@@ -1,6 +1,6 @@
 {
-  "startedAt": "2026-11-14T19:48:37.020Z",
-  "finishedAt": "2026-11-14T19:49:23.940Z",
+  "startedAt": "2026-11-14T19:50:53.075Z",
+  "finishedAt": "2026-11-14T19:53:54.149Z",
   "options": {
     "sources": [
       "shufersal",
@@ -27,71 +27,80 @@
       "rawItems": 20858,
       "products": 13988,
       "merge": {
-        "added": 13988,
-        "updated": 0,
-        "unchanged": 0,
+        "added": 0,
+        "updated": 1959,
+        "unchanged": 12029,
         "mergedByBarcode": 0,
         "mergedLoose": 0
       },
       "error": null,
-      "fetchedAt": "2026-11-14T19:48:37.021Z",
-      "lastSuccess": "2026-11-14T19:48:37.021Z"
+      "fetchedAt": "2026-11-14T19:50:53.174Z",
+      "lastSuccess": "2026-11-14T19:50:53.174Z"
     },
     {
       "id": "ramilevy",
       "name": "רמי לוי",
-      "status": "error",
-      "files": 0,
-      "filesFailed": 0,
-      "rawItems": 0,
-      "products": 0,
-      "merge": null,
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
-      "fetchedAt": "2026-11-14T19:48:41.703Z",
-      "lastSuccess": null
+      "status": "ok",
+      "files": 1,
+      "filesFailed": 1,
+      "rawItems": 3483,
+      "products": 3483,
+      "merge": {
+        "added": 1713,
+        "updated": 1770,
+        "unchanged": 0,
+        "mergedByBarcode": 1770,
+        "mergedLoose": 0
+      },
+      "error": null,
+      "fetchedAt": "2026-11-14T19:50:57.506Z",
+      "lastSuccess": "2026-11-14T19:50:57.506Z"
     },
     {
       "id": "osherad",
       "name": "אושר עד",
-      "status": "error",
-      "files": 0,
+      "status": "ok",
+      "files": 1,
       "filesFailed": 0,
-      "rawItems": 0,
-      "products": 0,
-      "merge": null,
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
-      "fetchedAt": "2026-11-14T19:48:44.148Z",
-      "lastSuccess": null
+      "rawItems": 5952,
+      "products": 5952,
+      "merge": {
+        "added": 3123,
+        "updated": 2829,
+        "unchanged": 0,
+        "mergedByBarcode": 2829,
+        "mergedLoose": 0
+      },
+      "error": null,
+      "fetchedAt": "2026-11-14T19:51:02.092Z",
+      "lastSuccess": "2026-11-14T19:51:02.092Z"
     }
   ],
   "totals": {
-    "inDB": 13988,
-    "inCatalog": 13988,
-    "withBarcode": 13498,
-    "withImages": 12,
+    "inDB": 18824,
+    "inCatalog": 18824,
+    "withBarcode": 18053,
+    "withImages": 30,
     "overridesApplied": 0
   },
   "enrich": {
-    "checked": 13,
-    "fromCache": 0,
-    "found": 13,
-    "images": 12,
-    "notFound": 0,
-    "failed": 24,
-    "skippedByLimit": 11998
+    "checked": 53,
+    "fromCache": 1,
+    "found": 22,
+    "images": 18,
+    "notFound": 31,
+    "failed": 140,
+    "skippedByLimit": 16541
   },
   "errors": [
     {
       "source": "ramilevy",
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף"
-    },
-    {
-      "source": "osherad",
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף"
+      "file": "pricefull7290058140886-039-202611140520.gz",
+      "error": "קובץ ZIP אינו נתמך — יש לחלץ אותו קודם"
     },
     {
       "source": "openfoodfacts",
-      "error": "הופסק אחרי 5 כשלונות רצופים: https://world.openfoodfacts.org/api/v2/product/3574660333466.json: HTTP 404"
+      "error": "הופסק אחרי 5 כשלונות רצופים: https://world.openfoodfacts.org/api/v2/product/4740098098355.json: HTTP 429 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף"
     }
   ]
 }

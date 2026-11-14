@@ -1,30 +1,30 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-14T19:49:23.697Z",
+  "generatedAt": "2026-11-14T19:53:53.830Z",
   "isSample": false,
-  "total": 13988,
-  "withBarcode": 13498,
-  "withImages": 12,
+  "total": 18824,
+  "withBarcode": 18053,
+  "withImages": 30,
   "byCategory": {
-    "baby": 89,
-    "bakery": 291,
-    "baking": 987,
-    "breakfast": 579,
-    "canned": 829,
-    "cleaning": 397,
-    "dairy": 802,
-    "deli": 232,
-    "drinks": 927,
-    "dry": 477,
-    "fish": 103,
-    "frozen": 408,
-    "hygiene": 403,
-    "meat": 498,
-    "other": 4259,
-    "paper": 257,
+    "baby": 135,
+    "bakery": 365,
+    "baking": 1503,
+    "breakfast": 810,
+    "canned": 1183,
+    "cleaning": 1152,
+    "dairy": 1112,
+    "deli": 316,
+    "drinks": 1396,
+    "dry": 697,
+    "fish": 180,
+    "frozen": 662,
+    "hygiene": 951,
+    "meat": 773,
+    "other": 2649,
+    "paper": 1033,
     "pets": 7,
-    "produce": 1189,
-    "snacks": 1254
+    "produce": 1753,
+    "snacks": 2147
   },
   "sources": [
     {
@@ -32,31 +32,32 @@
       "status": "ok",
       "error": null,
       "count": 13988,
-      "fetchedAt": "2026-11-14T19:48:37.021Z",
-      "lastSuccess": "2026-11-14T19:48:37.021Z"
+      "fetchedAt": "2026-11-14T19:50:53.174Z",
+      "lastSuccess": "2026-11-14T19:50:53.174Z"
     },
     {
       "id": "ramilevy",
-      "status": "error",
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
-      "count": 0,
-      "fetchedAt": "2026-11-14T19:48:41.703Z",
-      "lastSuccess": null
+      "status": "ok",
+      "error": null,
+      "count": 3483,
+      "fetchedAt": "2026-11-14T19:50:57.506Z",
+      "lastSuccess": "2026-11-14T19:50:57.506Z"
     },
     {
       "id": "osherad",
-      "status": "error",
-      "error": "https://url.publishedprices.co.il/file/json/dir: HTTP 401 — הגישה נדחתה/הוגבלה על ידי האתר; לא מנסים לעקוף",
-      "count": 0,
-      "fetchedAt": "2026-11-14T19:48:44.148Z",
-      "lastSuccess": null
+      "status": "ok",
+      "error": null,
+      "count": 5952,
+      "fetchedAt": "2026-11-14T19:51:02.092Z",
+      "lastSuccess": "2026-11-14T19:51:02.092Z"
     }
   ],
   "shards": [
-    "products-0-b94bc9935f.json",
-    "products-1-d8eebf0b15.json",
-    "products-2-2c20b2d68b.json",
-    "products-3-6d286e6299.json"
+    "products-0-5cff714a4f.json",
+    "products-1-00db493f52.json",
+    "products-2-ebba0c14a6.json",
+    "products-3-a221368604.json",
+    "products-4-922e2fd389.json"
   ],
   "attribution": "חלק מהתמונות מ-Open Food Facts (CC BY-SA 3.0)",
   "notes": [
