@@ -230,7 +230,6 @@ async function renderSearch(v) {
   await runSearch();
   if (st.scroll) v.scrollTop = st.scroll;
   v.onscroll = () => { st.scroll = v.scrollTop; };
-  if (!st.q && !st.cat) setTimeout(() => input.focus({ preventScroll: true }), 50);
 }
 
 function loadingState() {
@@ -890,9 +889,17 @@ async function restoreFlow(file) {
 
 // ---------- מקלדת באייפון ----------
 function setupKeyboardAwareness() {
-  // מסתירים את סרגל הלשוניות כשהמקלדת פתוחה כדי שלא "יקפוץ" מעליה
-  document.addEventListener('focusin', (e) => { if (e.target.matches('input:not([type=checkbox]):not([type=file]), textarea')) document.body.classList.add('kb'); });
-  document.addEventListener('focusout', () => setTimeout(() => { if (!document.activeElement?.matches?.('input, textarea')) document.body.classList.remove('kb'); }, 50));
+  // מסתירים את סרגל הלשוניות רק כשהמקלדת באמת פתוחה (שטח התצוגה התכווץ),
+  // ולא סתם כששדה מקבל פוקוס — באייפון פוקוס בלי לחיצה לא פותח מקלדת.
+  const vv = window.visualViewport;
+  const update = () => {
+    const focused = document.activeElement?.matches?.('input:not([type=checkbox]):not([type=file]), textarea');
+    const shrunk = vv ? window.innerHeight - vv.height > 150 : false;
+    document.body.classList.toggle('kb', !!(focused && shrunk));
+  };
+  vv?.addEventListener('resize', update);
+  document.addEventListener('focusin', () => setTimeout(update, 300));
+  document.addEventListener('focusout', () => setTimeout(update, 100));
 }
 
 window.__app = { db, S, catalog, go, render }; // לבדיקות אוטומטיות
