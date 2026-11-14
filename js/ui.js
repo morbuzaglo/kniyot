@@ -41,7 +41,9 @@ export function thumb(snap, size = 'm') {
   box.classList.add('loading');
   imageURL(snap).then((src) => {
     if (!src) return ph();
-    const img = h('img', { alt: snap.name || '', loading: 'lazy', decoding: 'async' });
+    // בתצוגה גדולה — גרסה ברזולוציה גבוהה יותר של תמונת רמי לוי
+    if (size === 'xl' && /img\.rami-levy\.co\.il\/.*\/small\.jpg$/.test(src)) src = src.replace(/small\.jpg$/, 'large.jpg');
+    const img = h('img', { alt: snap.name || '', loading: size === 'xl' ? 'eager' : 'lazy', decoding: 'async', referrerpolicy: 'no-referrer' });
     img.onload = () => box.classList.remove('loading');
     img.onerror = ph;
     img.src = src;
