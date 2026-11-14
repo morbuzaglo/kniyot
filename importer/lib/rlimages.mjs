@@ -8,7 +8,7 @@ import { UA, sleep } from './http.mjs';
 
 export const rlImageUrl = (barcode) => `https://img.rami-levy.co.il/product/${barcode}/small.jpg`;
 
-export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concurrency = 12, recheckDays = 30, log = console.log, errors = [] }) {
+export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concurrency = 2, recheckDays = 30, log = console.log, errors = [] }) {
   let cache = {};
   try { cache = JSON.parse(await fs.readFile(cacheFile, 'utf8')); } catch {}
   const now = Date.now();
@@ -48,7 +48,7 @@ export async function attachRamiLevyImages(db, { cacheFile, limit = 30000, concu
         if (++consecutiveFail >= 10) { stop = true; errors.push({ source: 'rami-levy-images', error: 'הופסק אחרי כשלונות רצופים: ' + e.message }); }
         await sleep(3000);
       }
-      await sleep(50);
+      await sleep(400);
       if (st.checked && st.checked % 2000 === 0) { log(`  תמונות רמי לוי: ${st.checked} נבדקו…`); await save(); }
     }
   }

@@ -20,7 +20,7 @@ import { writeCatalog } from './lib/output.mjs';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 export function parseArgs(argv) {
-  const a = { sources: Object.keys(SOURCES), maxStores: 3, out: path.join(HERE, '../app/catalog'), data: path.join(HERE, 'data'), fromDir: null, enrichOff: false, offLimit: 500, rlImages: true, rlLimit: 30000, downloadImages: true, staleDays: 120, quiet: false };
+  const a = { sources: Object.keys(SOURCES), maxStores: 3, out: path.join(HERE, '../app/catalog'), data: path.join(HERE, 'data'), fromDir: null, enrichOff: false, offLimit: 500, rlImages: false, rlLimit: 30000, downloadImages: true, staleDays: 120, quiet: false };
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i], v = () => argv[++i];
     if (k === '--sources') a.sources = v().split(',').map((s) => s.trim()).filter(Boolean);
@@ -32,6 +32,7 @@ export function parseArgs(argv) {
     else if (k === '--off-limit') a.offLimit = Number(v());
     else if (k === '--no-download-images') a.downloadImages = false;
     else if (k === '--no-rl-images') a.rlImages = false;
+    else if (k === '--rl-images') a.rlImages = true; // בדיקה מראש (איטית; השרת מגביל קצב). ברירת המחדל: האפליקציה טוענת לפי ברקוד
     else if (k === '--rl-limit') a.rlLimit = Number(v());
     else if (k === '--stale-days') a.staleDays = Number(v());
     else if (k === '--quiet') a.quiet = true;
