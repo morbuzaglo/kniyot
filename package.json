@@ -1,0 +1,18 @@
+{
+  "name": "kniyot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PWA לניהול קניות לבית + תהליך ייבוא קטלוג",
+  "scripts": {
+    "import": "node importer/import.mjs",
+    "import:images": "node importer/import.mjs --enrich-off --off-limit 2000",
+    "sample": "node importer/sample-catalog.mjs",
+    "test": "node --test importer/test/*.test.mjs",
+    "serve": "python3 -m http.server 8080 --directory app"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.0"
+  },
+  "engines": { "node": ">=20" }
+}

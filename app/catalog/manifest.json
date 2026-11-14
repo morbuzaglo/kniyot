@@ -1,0 +1,43 @@
+{
+  "formatVersion": 1,
+  "generatedAt": "2026-11-14T19:29:52.480Z",
+  "isSample": true,
+  "total": 127,
+  "withBarcode": 0,
+  "withImages": 0,
+  "byCategory": {
+    "baby": 3,
+    "bakery": 7,
+    "baking": 10,
+    "breakfast": 8,
+    "canned": 9,
+    "cleaning": 7,
+    "dairy": 23,
+    "deli": 2,
+    "drinks": 8,
+    "dry": 11,
+    "fish": 1,
+    "frozen": 5,
+    "hygiene": 4,
+    "meat": 3,
+    "paper": 6,
+    "pets": 2,
+    "produce": 11,
+    "snacks": 7
+  },
+  "sources": [
+    {
+      "id": "sample",
+      "status": "sample",
+      "error": "נתוני דוגמה לפיתוח — לא יובאו מרשת",
+      "count": 127
+    }
+  ],
+  "shards": [
+    "products-0-4b5fa8e81f.json"
+  ],
+  "attribution": null,
+  "notes": [
+    "קטלוג דוגמה. כל המוצרים מסומנים sample. אין ברקודים ואין תמונות."
+  ]
+}

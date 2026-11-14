@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>הקניות שלי</title>
+  <meta name="description" content="רשימות קניות לבית, עם שיתוף בוואטסאפ ועבודה ללא אינטרנט">
+  <meta name="theme-color" content="#FFF8F0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="קניות">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <main id="view" class="view" tabindex="-1">
+    <div class="boot">טוען…</div>
+  </main>
+
+  <nav class="tabbar" aria-label="ניווט ראשי">
+    <a class="tab" data-tab="home" href="#home"><span class="tab-ic" aria-hidden="true">🏠</span><span>בית</span></a>
+    <a class="tab" data-tab="search" href="#search"><span class="tab-ic" aria-hidden="true">🔍</span><span>חיפוש</span></a>
+    <a class="tab" data-tab="list" href="#list"><span class="tab-ic" aria-hidden="true">🧾</span><span>רשימה</span><b id="tab-list-badge" class="badge" hidden></b></a>
+    <a class="tab" data-tab="favs" href="#favs"><span class="tab-ic" aria-hidden="true">♡</span><span>מועדפים</span></a>
+    <a class="tab" data-tab="settings" href="#settings"><span class="tab-ic" aria-hidden="true">⚙︎</span><span>הגדרות</span></a>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <noscript>האפליקציה דורשת JavaScript.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

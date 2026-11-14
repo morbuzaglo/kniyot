@@ -1,0 +1,40 @@
+# ייבוא קטלוג שבועי ופריסה ל-GitHub Pages.
+# הערה: ייתכן שאתרי הרשתות חוסמים כתובות IP מחוץ לישראל; אם הייבוא נכשל כאן,
+# הריצו אותו במחשב בישראל, עשו commit לתיקיית app/catalog, והשביתו את שלב הייבוא.
+name: catalog-and-deploy
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * 0'   # ראשון 02:17 UTC
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --no-audit --no-fund || true   # sharp אופציונלי, לכיווץ תמונות
+      - name: Import catalog
+        if: github.event_name != 'push'
+        run: node importer/import.mjs --max-stores 3 --enrich-off --off-limit 1500 || echo "import finished with errors (see report)"
+      - name: Commit catalog
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "catalog-bot"; git config user.email "catalog-bot@users.noreply.github.com"
+          git add app/catalog importer/data/import-report.json importer/data/catalog-db.json importer/data/off-cache || true
+          git commit -m "catalog: weekly import" || echo "no changes"
+          git push || true
+      - run: npm test
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: app }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: '${{ steps.d.outputs.page_url }}' }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4
