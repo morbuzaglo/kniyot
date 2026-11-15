@@ -1,30 +1,30 @@
 {
   "formatVersion": 1,
-  "generatedAt": "2026-11-14T21:24:28.268Z",
+  "generatedAt": "2026-11-15T09:34:31.388Z",
   "isSample": false,
-  "total": 27571,
-  "withBarcode": 26129,
-  "withImages": 438,
+  "total": 27605,
+  "withBarcode": 26156,
+  "withImages": 498,
   "byCategory": {
     "baby": 205,
-    "bakery": 538,
-    "baking": 2005,
+    "bakery": 539,
+    "baking": 2006,
     "breakfast": 1134,
-    "canned": 1490,
-    "cleaning": 1774,
-    "dairy": 1630,
+    "canned": 1491,
+    "cleaning": 1775,
+    "dairy": 1632,
     "deli": 421,
-    "drinks": 1823,
-    "dry": 1024,
-    "fish": 250,
-    "frozen": 884,
-    "hygiene": 1621,
+    "drinks": 1826,
+    "dry": 1025,
+    "fish": 251,
+    "frozen": 889,
+    "hygiene": 1622,
     "meat": 1013,
-    "other": 5018,
-    "paper": 1527,
-    "pets": 69,
-    "produce": 2259,
-    "snacks": 2886
+    "other": 5027,
+    "paper": 1530,
+    "pets": 70,
+    "produce": 2260,
+    "snacks": 2889
   },
   "sources": [
     {
@@ -32,34 +32,34 @@
       "status": "ok",
       "error": null,
       "count": 13988,
-      "fetchedAt": "2026-11-14T21:01:07.337Z",
-      "lastSuccess": "2026-11-14T21:01:07.337Z"
+      "fetchedAt": "2026-11-15T09:23:23.041Z",
+      "lastSuccess": "2026-11-15T09:23:23.041Z"
     },
     {
       "id": "ramilevy",
       "status": "ok",
       "error": null,
-      "count": 15904,
-      "fetchedAt": "2026-11-14T21:01:11.129Z",
-      "lastSuccess": "2026-11-14T21:01:11.129Z"
+      "count": 15944,
+      "fetchedAt": "2026-11-15T09:23:26.582Z",
+      "lastSuccess": "2026-11-15T09:23:26.582Z"
     },
     {
       "id": "osherad",
       "status": "ok",
       "error": null,
       "count": 5952,
-      "fetchedAt": "2026-11-14T21:01:17.061Z",
-      "lastSuccess": "2026-11-14T21:01:17.061Z"
+      "fetchedAt": "2026-11-15T09:23:32.229Z",
+      "lastSuccess": "2026-11-15T09:23:32.229Z"
     }
   ],
   "shards": [
-    "products-0-c0bffa76a3.json",
-    "products-1-3a19a20eb6.json",
-    "products-2-8789745456.json",
-    "products-3-3fa118ec24.json",
-    "products-4-f97a1fdae6.json",
-    "products-5-bc1e187398.json",
-    "products-6-411a0ffc95.json"
+    "products-0-383db1c772.json",
+    "products-1-e73cc72f9f.json",
+    "products-2-57c1fe0e07.json",
+    "products-3-84fcbd1118.json",
+    "products-4-7f9e962497.json",
+    "products-5-fb5a770035.json",
+    "products-6-60d5e37cc9.json"
   ],
   "attribution": "חלק מהתמונות מ-Open Food Facts (CC BY-SA 3.0)",
   "notes": [
