@@ -1,6 +1,6 @@
 {
-  "startedAt": "2026-11-15T09:23:22.840Z",
-  "finishedAt": "2026-11-15T09:34:31.773Z",
+  "startedAt": "2026-11-22T09:44:46.477Z",
+  "finishedAt": "2026-11-22T09:50:12.767Z",
   "options": {
     "sources": [
       "shufersal",
@@ -26,18 +26,18 @@
       "status": "ok",
       "files": 3,
       "filesFailed": 0,
-      "rawItems": 20827,
-      "products": 13967,
+      "rawItems": 20829,
+      "products": 14001,
       "merge": {
-        "added": 0,
-        "updated": 0,
-        "unchanged": 13967,
-        "mergedByBarcode": 0,
+        "added": 146,
+        "updated": 89,
+        "unchanged": 13766,
+        "mergedByBarcode": 30,
         "mergedLoose": 0
       },
       "error": null,
-      "fetchedAt": "2026-11-15T09:23:23.041Z",
-      "lastSuccess": "2026-11-15T09:23:23.041Z"
+      "fetchedAt": "2026-11-22T09:44:46.719Z",
+      "lastSuccess": "2026-11-22T09:44:46.719Z"
     },
     {
       "id": "ramilevy",
@@ -45,18 +45,18 @@
       "status": "ok",
       "files": 2,
       "filesFailed": 0,
-      "rawItems": 18966,
-      "products": 15934,
+      "rawItems": 18915,
+      "products": 15887,
       "merge": {
-        "added": 34,
-        "updated": 7,
-        "unchanged": 15893,
-        "mergedByBarcode": 6,
+        "added": 716,
+        "updated": 132,
+        "unchanged": 15039,
+        "mergedByBarcode": 92,
         "mergedLoose": 0
       },
       "error": null,
-      "fetchedAt": "2026-11-15T09:23:26.582Z",
-      "lastSuccess": "2026-11-15T09:23:26.582Z"
+      "fetchedAt": "2026-11-22T09:44:52.633Z",
+      "lastSuccess": "2026-11-22T09:44:52.633Z"
     },
     {
       "id": "osherad",
@@ -64,36 +64,36 @@
       "status": "ok",
       "files": 1,
       "filesFailed": 0,
-      "rawItems": 5939,
-      "products": 5939,
+      "rawItems": 5908,
+      "products": 5908,
       "merge": {
-        "added": 0,
-        "updated": 0,
-        "unchanged": 5939,
-        "mergedByBarcode": 0,
+        "added": 44,
+        "updated": 32,
+        "unchanged": 5832,
+        "mergedByBarcode": 32,
         "mergedLoose": 0
       },
       "error": null,
-      "fetchedAt": "2026-11-15T09:23:32.229Z",
-      "lastSuccess": "2026-11-15T09:23:32.229Z"
+      "fetchedAt": "2026-11-22T09:44:59.784Z",
+      "lastSuccess": "2026-11-22T09:44:59.784Z"
     }
   ],
   "totals": {
-    "inDB": 27605,
-    "inCatalog": 27605,
-    "withBarcode": 26156,
-    "withImages": 498,
+    "inDB": 28511,
+    "inCatalog": 28511,
+    "withBarcode": 26983,
+    "withImages": 517,
     "overridesApplied": 0
   },
   "rlImages": null,
   "enrich": {
-    "checked": 294,
-    "fromCache": 160,
-    "found": 127,
-    "images": 60,
-    "notFound": 167,
-    "failed": 6,
-    "skippedByLimit": 25418
+    "checked": 297,
+    "fromCache": 234,
+    "found": 95,
+    "images": 19,
+    "notFound": 202,
+    "failed": 3,
+    "skippedByLimit": 26185
   },
   "errors": []
 }
